@@ -1,8 +1,33 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
+import clsx from "clsx";
 
-export const NavBar = () => {
+interface ILinks {
+  title: string;
+  href: string;
+}
+
+const links: ILinks[] = [
+  {
+    title: "Home",
+    href: "/",
+  },
+  {
+    title: "About Me",
+    href: "/about",
+  },
+  {
+    title: "Projects",
+    href: "/projects",
+  },
+  {
+    title: "Contact",
+    href: "/contact",
+  },
+];
+
+const NavBar = () => {
   const [active, setActive] = useState(false);
 
   const handleClick = () => {
@@ -11,9 +36,19 @@ export const NavBar = () => {
 
   return (
     <>
-      <nav className="flex flex-wrap items-center bg-prussian-blue p-1 font-Silkscreen ">
+      <header></header>
+      <nav
+        className={clsx(
+          "flex",
+          "flex-wrap",
+          "items-center",
+          "bg-prussian-blue",
+          "p-1",
+          "font-Silkscreen"
+        )}
+      >
         <Link href="/">
-          <a className="mr-4 inline-flex items-center p-1 ">
+          <a className={clsx("mr-4", "inline-flex", "items-center", "p-1")}>
             <Image
               priority
               src="/images/pixel.png"
@@ -25,11 +60,20 @@ export const NavBar = () => {
           </a>
         </Link>
         <button
-          className=" ml-auto inline-flex rounded p-3 outline-none hover:bg-blue-sapphire hover:text-rich-black lg:hidden"
+          className={clsx(
+            "ml-auto",
+            "inline-flex",
+            "rounded",
+            "p-3",
+            "outline-none",
+            "hover:bg-blue-sapphire",
+            "hover:text-rich-black",
+            "lg:hidden"
+          )}
           onClick={handleClick}
         >
           <svg
-            className="h-6 w-6"
+            className={clsx("h-6", "w-6")}
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
@@ -44,34 +88,53 @@ export const NavBar = () => {
           </svg>
         </button>
         <div
-          className={`${
-            active ? "" : "hidden"
-          }   w-full lg:inline-flex lg:w-auto lg:flex-grow`}
+          className={clsx(
+            { ["hidden"]: !active },
+            "w-full",
+            "lg:inline-flex",
+            "lg:w-auto",
+            "lg:flex-grow"
+          )}
         >
-          <div className="flex w-full flex-col items-start lg:ml-auto lg:inline-flex lg:h-auto  lg:w-auto lg:flex-row lg:items-center">
-            <Link href="/">
-              <a className="w-full items-center justify-center rounded px-3 py-2 font-Silkscreen font-bold hover:bg-blue-sapphire hover:text-rich-black lg:inline-flex lg:w-auto ">
-                Home
-              </a>
-            </Link>
-            <Link href="/">
-              <a className="w-full items-center justify-center rounded px-3 py-2 font-Silkscreen font-bold hover:bg-blue-sapphire hover:text-rich-black lg:inline-flex lg:w-auto">
-                About Me
-              </a>
-            </Link>
-            <Link href="/">
-              <a className="w-full items-center justify-center rounded px-3 py-2 font-Silkscreen font-bold hover:bg-blue-sapphire hover:text-rich-black lg:inline-flex lg:w-auto">
-                Projects
-              </a>
-            </Link>
-            <Link href="/">
-              <a className="w-full items-center justify-center rounded px-3 py-2 font-Silkscreen font-bold hover:bg-blue-sapphire hover:text-rich-black lg:inline-flex lg:w-auto">
-                Contact
-              </a>
-            </Link>
+          <div
+            className={clsx(
+              "flex w-full",
+              "flex-col",
+              "items-start",
+              "lg:ml-auto",
+              "lg:inline-flex",
+              "lg:h-auto",
+              "lg:w-auto",
+              "lg:flex-row",
+              "lg:items-center"
+            )}
+          >
+            {links.map(({ title, href }) => (
+              <Link href={href} key={`${href}-${title}`}>
+                <a
+                  className={clsx(
+                    "w-full items-center",
+                    "justify-center",
+                    "rounded",
+                    "px-3",
+                    "py-2",
+                    "font-Silkscreen",
+                    "font-bold",
+                    "hover:bg-blue-sapphire",
+                    "hover:text-rich-black",
+                    "lg:inline-flex",
+                    "lg:w-auto"
+                  )}
+                >
+                  {title}
+                </a>
+              </Link>
+            ))}
           </div>
         </div>
       </nav>
     </>
   );
 };
+
+export default NavBar;
