@@ -1,5 +1,4 @@
 import clsx from "clsx";
-import { forwardRef, LegacyRef } from "react";
 import { UseFormRegister } from "react-hook-form";
 import { FormValues } from "../../types";
 
