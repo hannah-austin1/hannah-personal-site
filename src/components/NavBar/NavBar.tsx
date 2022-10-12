@@ -2,32 +2,13 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import clsx from "clsx";
+import { ILinks } from "../../types";
 
-interface ILinks {
-  title: string;
-  href: string;
+interface INavBarProps {
+  links: ILinks[];
 }
 
-const links: ILinks[] = [
-  {
-    title: "Home",
-    href: "/",
-  },
-  {
-    title: "About Me",
-    href: "/about",
-  },
-  {
-    title: "Projects",
-    href: "/projects",
-  },
-  {
-    title: "Contact",
-    href: "/contact",
-  },
-];
-
-const NavBar = () => {
+const NavBar = ({ links }: INavBarProps) => {
   const [active, setActive] = useState(false);
 
   const handleClick = () => {
