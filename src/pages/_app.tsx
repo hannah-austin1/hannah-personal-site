@@ -7,7 +7,7 @@ import { Layout, NavBar } from "../components";
 import Head from "next/head";
 import { slideRight } from "../lib/animations";
 import { ILinks } from "../types";
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect, useRef } from "react";
 
 const links: ILinks[] = [
   {
@@ -33,19 +33,29 @@ const MyApp: AppType = ({ Component, pageProps, router }) => {
   // const [animation, setAnimation] = useState(animations[startIndex]);
   // const [exitBefore, setExitBefore] = useState(false);
 
-  const [currentPage, setCurrentPage] = useState(0);
-  const [direction, setDirection] = useState(1);
+  // const [currentPage, setCurrentPage] = useState(0);
+  // const [direction, setDirection] = useState(0);
+  // const prevPage = useRef(0);
 
-  //get current page
-  // check index of current page in links
-  // if index is greater than current page, set direction to 1
-  const index = links.findIndex((x) => x.href === router.route);
-  console.log({ index });
-  useCallback((index: number) => {
-    setCurrentPage(index);
-  }, []);
+  // useEffect(() => {
+  //   prevPage.current = currentPage;
+  //   const newPage = links.findIndex((x) => x.href === router.route);
+  //   setCurrentPage(newPage);
+  //   if (currentPage > newPage) {
+  //     console.log("Hello");
+  //     setDirection(-1);
+  //   } else {
+  //     console.log("goodbye");
+  //     setDirection(1);
+  //   }
+  //   console.log({ currentPage, newPage, direction });
+  // }, [router.route, direction]);
 
-  console.log({ currentPage });
+  // useEffect(() => {
+  //   const newPage = links.findIndex((x) => x.href === router.route);
+  //   setCurrentPage(newPage);
+  // }, [router.route]);
+
   return (
     <>
       <Head>
@@ -62,9 +72,16 @@ const MyApp: AppType = ({ Component, pageProps, router }) => {
             initial="initial"
             animate="animate"
             exit="exit"
-            variants={slideRight.variants}
-            transition={slideRight.transition}
-            custom={direction}
+            variants={{
+              initial: {
+                opacity: 0,
+              },
+              animate: {
+                opacity: 1,
+              },
+            }}
+            // transition={slideRight.transition}
+            // custom={direction}
           >
             <Layout>
               <Component {...pageProps} />
