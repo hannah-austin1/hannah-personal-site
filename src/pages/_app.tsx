@@ -35,7 +35,7 @@ const MyApp: AppType = ({ Component, pageProps, router }) => {
         <meta name="Hannah Austin" content="Hannah Austin Personal Website" />
       </Head>
       <NavBar links={links} />
-      <LazyMotion features={domAnimation}>
+      {/* <LazyMotion features={domAnimation}>
         <AnimatePresence mode="wait" initial={false}>
           <m.div
             key={router.route}
@@ -50,13 +50,13 @@ const MyApp: AppType = ({ Component, pageProps, router }) => {
                 opacity: 1,
               },
             }}
-          >
-            <Layout>
-              <Component {...pageProps} />
-            </Layout>
-          </m.div>
+          > */}
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
+      {/* </m.div>
         </AnimatePresence>
-      </LazyMotion>
+      </LazyMotion> */}
     </>
   );
 };

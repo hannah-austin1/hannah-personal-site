@@ -1,6 +1,6 @@
 import clsx from "clsx";
 import { UseFormRegister } from "react-hook-form";
-import { FormValues } from "../../types";
+import { FormValues } from "../../../types";
 
 interface IInputProps {
   id: keyof FormValues;

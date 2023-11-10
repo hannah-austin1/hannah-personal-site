@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import clsx from "clsx";
-import { ILinks } from "../../types";
+import { ILinks } from "../../../types";
 
 interface INavBarProps {
   links: ILinks[];
@@ -94,7 +94,8 @@ const NavBar = ({ links }: INavBarProps) => {
               <Link href={href} key={`${href}-${title}`}>
                 <a
                   className={clsx(
-                    "w-full items-center",
+                    "w-full",
+                    "items-center",
                     "justify-center",
                     "rounded",
                     "px-3",

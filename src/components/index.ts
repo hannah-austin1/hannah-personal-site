@@ -1,3 +1,3 @@
-export { default as Layout } from "./Layout/Layout";
-export { default as NavBar } from "./NavBar/NavBar";
-export { default as Input } from "./Input/Input";
+export * from "./Atoms";
+export * from "./Molecules";
+export * from "./Organisms";
